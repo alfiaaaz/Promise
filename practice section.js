@@ -17,39 +17,6 @@
 // let rand=Math.floor (Math.random()*10+11);
 // console.log(rand);
 
-// function DownloadFile(url,download){
-//     console.log('Make chese........')
-//     setTimeout(()=>{
-//         let path=url.split('/').pop();
-//           download(path);
-//     },5000);
-// }
-// function compressfile(path,compress){
-//     console.log('Make base......');
-//     setTimeout(()=>{
-//         const comp=path.split('.')[0];
-//         compress(comp);
-//     },2000);
-// }
-
-// function Uploadfile(comp,upload){
-//     console.log('make topping......');
-//     setTimeout(()=>{
-//         const upl='http://LocalStorage'+comp;
-//         upload(upl);
-//     },1000);
-// }
-// DownloadFile('https://www.facebook.com/profile.jpg',function(path){
-//     console.log(`Make a chese sucessfully.... ${path}`);
-//     compressfile(path,function(comp){
-//         console.log(`Make a base sucessfully......${comp}`);
-//         Uploadfile(comp,function(upl){
-//             console.log(`Make a topping sucessfully.....${upl}`);
-//             console.log('Everything is done!!')
-//         })
-//     })
-// })
-
 
 function makeChese()
 {
@@ -78,7 +45,7 @@ function addTopping(){
     console.log('add topping');
     return new Promise(function(resolve,reject){
         setTimeout(()=>{
-            const topping='🍅';
+            const topping='🍅'
             console.log(`topping is added ${topping}`)
             resolve(topping);
         },3000);
@@ -86,9 +53,19 @@ function addTopping(){
    
 }
 
+async function makePizza(){
+    const getchese=await makeChese();
+    console.log(getchese)
+    const base=await makeBase();
+    console.log(base);
+    const topping =await addTopping();
+    console.log(topping);
+}
+
+makePizza()
 makeChese()
 .then(makeBase())
 .then(addTopping())
 .then(()=>{
-    
 })
+
